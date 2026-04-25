@@ -3,41 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的资料页</title>
+    <title>我的资料</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-            background-color: #f5f5f5;
         }
-        .card {
+        
+        .container {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
         }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
         h1 {
             color: #333;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
-        .info {
-            line-height: 2;
-            color: #666;
+        
+        .subtitle {
+            color: #888;
+            font-size: 16px;
+        }
+        
+        .info-section {
+            margin: 30px 0;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .info-item:hover {
+            transform: translateX(10px);
+            background: #e9ecef;
+        }
+        
+        .icon {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .label {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px;
+            min-width: 50px;
+        }
+        
+        .value {
+            color: #333;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #aaa;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>我的个人资料</h1>
-        <div class="info">
-            <p>📋 姓名：张三</p>
-            <p>📧 邮箱：zhangsan@example.com</p>
-            <p>💼 职位：前端工程师</p>
-            <p>📍 地点：北京</p>
-            <p>🎯 技能：HTML, CSS, JavaScript</p>
+    <div class="container">
+        <div class="header">
+            <div class="avatar">👤</div>
+            <h1>张三</h1>
+            <p class="subtitle">高级前端开发工程师</p>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-item">
+                <span class="icon">📧</span>
+                <span class="label">邮箱：</span>
+                <span class="value">zhangsan@example.com</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="icon">📱</span>
+                <span class="label">电话：</span>
+                <span class="value">138-xxxx-xxxx</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="icon">📍</span>
+                <span class="label">地点：</span>
+                <span class="value">中国·北京</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="icon">💼</span>
+                <span class="label">公司：</span>
+                <span class="value">科技有限公司</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="icon">🎓</span>
+                <span class="label">学历：</span>
+                <span class="value">计算机科学 本科</span>
+            </div>
+            
+            <div class="info-item">
+                <span class="icon">🛠️</span>
+                <span class="label">技能：</span>
+                <span class="value">HTML, CSS, JavaScript, React, Vue</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📅 最后更新：2026年4月</p>
         </div>
     </div>
 </body>

@@ -3,158 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的资料</title>
+    <title>秒杀圈非官方网站</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            color: #fff;
         }
-        
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-            max-width: 600px;
-            width: 100%;
-        }
-        
+
+        /* 顶部导航 */
         .header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
             text-align: center;
-            margin-bottom: 30px;
+            border-bottom: 2px solid #e94560;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        
-        .avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: white;
+
+        .header h1 {
+            font-size: 36px;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
         }
-        
-        h1 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #888;
-            font-size: 16px;
-        }
-        
-        .info-section {
-            margin: 30px 0;
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: transform 0.2s;
-        }
-        
-        .info-item:hover {
-            transform: translateX(10px);
-            background: #e9ecef;
-        }
-        
-        .icon {
-            font-size: 24px;
-            margin-right: 15px;
-            width: 30px;
-            text-align: center;
-        }
-        
-        .label {
-            font-weight: bold;
-            color: #555;
-            margin-right: 10px;
-            min-width: 50px;
-        }
-        
-        .value {
-            color: #333;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+
+        .header .subtitle {
             color: #aaa;
             font-size: 14px;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 人物网格 */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        /* 人物卡片 */
+        .member-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+            border-color: #e94560;
+        }
+
+        /* 人物图片 */
+        .member-avatar {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+
+        /* 图片占位符样式（当没有实际图片时） */
+        .avatar-placeholder {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            background: linear-gradient(135deg, #e94560, #0f3460);
+        }
+
+        /* 人物信息 */
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .member-title {
+            font-size: 14px;
+            color: #e94560;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .member-bio {
+            font-size: 14px;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 代表作 */
+        .member-works {
+            margin-bottom: 15px;
+        }
+
+        .works-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .work-tag {
+            display: inline-block;
+            background: rgba(233, 69, 96, 0.2);
+            color: #ff6b6b;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 2px 2px;
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+
+        /* 链接按钮 */
+        .member-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .link-btn.primary {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: #fff;
+        }
+
+        .link-btn.primary:hover {
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.5);
+            transform: scale(1.05);
+        }
+
+        .link-btn.secondary {
+            background: transparent;
+            color: #e94560;
+            border: 1px solid #e94560;
+        }
+
+        .link-btn.secondary:hover {
+            background: rgba(233, 69, 96, 0.1);
+            transform: scale(1.05);
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- 头部 -->
+    <div class="header">
+        <h1> 秒杀圈非官方网站</h1>
+        <p class="subtitle">—— 成员资料展示 ——</p>
+    </div>
+
+    <!-- 人物卡片区域 -->
     <div class="container">
-        <div class="header">
-            <div class="avatar">👤</div>
-            <h1>张三</h1>
-            <p class="subtitle">高级前端开发工程师</p>
-        </div>
-        
-        <div class="info-section">
-            <div class="info-item">
-                <span class="icon">📧</span>
-                <span class="label">邮箱：</span>
-                <span class="value">zhangsan@example.com</span>
+        <div class="member-grid">
+
+            <div class="member-card">
+                <img class="member-avatar" 
+                     src="https://via.placeholder.com/400x250/1a1a2e/e94560?text=人物1" 
+                     alt="人物照片"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-placeholder" style="display: none;">👤</div>
+                <div class="member-info">
+                    <div class="member-name">wwwagannn</div>
+                    <div class="member-title">🏷️ 秒杀圈古神/真神</div>
+                    <div class="member-bio">
+                        秒杀圈唯一真神，同时开创了Unsafe替换指针时代，现已退圈，喜欢玩音游。
+                    </div>
+                    <div class="member-works">
+                        <div class="works-label">🎬 代表作</div>
+                        <span class="work-tag">砧板超神</span>
+                        <span class="work-tag">Magical Emilia</span>
+                        <span class="work-tag">高仿诸界破碎之天枪「一念云诗」</span>
+                         <span class="work-tag">绝对之刃</span>
+                    </div>
+                    <div class="member-links">
+                        <a href="https://space.bilibili.com/628389319" class="link-btn secondary" target="_blank">📺 B站</a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="info-item">
-                <span class="icon">📱</span>
-                <span class="label">电话：</span>
-                <span class="value">138-xxxx-xxxx</span>
+
+            <div class="member-card">
+                <img class="member-avatar" 
+                     src="https://via.placeholder.com/400x250/16213e/e94560?text=人物2" 
+                     alt="人物照片"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-placeholder" style="display: none;">👤</div>
+                <div class="member-info">
+                    <div class="member-name">Mx_wj</div>
+                    <div class="member-title">🏷️ 秒杀圈古神</div>
+                    <div class="member-bio">
+                        首创AllReturn和渲染崩坏，喜欢捣鼓神秘小玩具。
+                    </div>
+                    <div class="member-works">
+                        <div class="works-label">🎬 代表作</div>
+                        <span class="work-tag">相对之刃</span>
+                        <span class="work-tag">Mxwj的垃圾剑</span>
+                        <span class="work-tag">mx_wjPower</span>
+                        <span class="work-tag">真终端</span>
+                    </div>
+                    <div class="member-links">
+                        <a href="https://space.bilibili.com/323390495" class="link-btn secondary" target="_blank">📺 B站</a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="info-item">
-                <span class="icon">📍</span>
-                <span class="label">地点：</span>
-                <span class="value">中国·北京</span>
+
+            <div class="member-card">
+                <img class="member-avatar" 
+                     src="https://via.placeholder.com/400x250/0f3460/e94560?text=人物3" 
+                     alt="人物照片"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-placeholder" style="display: none;">👤</div>
+                <div class="member-info">
+                    <div class="member-name">Fox</div>
+                    <div class="member-title">🏷️ 秒杀圈远古开发者</div>
+                    <div class="member-bio">
+                        秒杀圈远古开发者，现已退圈。
+                    </div>
+                    <div class="member-works">
+                        <div class="works-label">🎬 代表作</div>
+                        <span class="work-tag">混沌凋灵</span>
+                         <span class="work-tag">狐の剑</span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="info-item">
-                <span class="icon">💼</span>
-                <span class="label">公司：</span>
-                <span class="value">科技有限公司</span>
+
+          <div class="member-card">
+                <img class="member-avatar" 
+                     src="images/tex4.webp" 
+                     alt="人物照片"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-placeholder" style="display: none;">👤</div>
+                <div class="member-info">
+                    <div class="member-name">俺不叫化咕龙</div>
+                    <div class="member-title">🏷️ 秒杀圈古神</div>
+                    <div class="member-bio">
+                        首创注入型Mod，多语言开发者，现已退圈。
+                    </div>
+                    <div class="member-works">
+                        <div class="works-label">🎬 代表作</div>
+                        <span class="work-tag">高仿狐剑</span>
+                        <span class="work-tag">TranscendEntity</span>
+                    </div>
+                    <div class="member-links">
+                        <a href="https://space.bilibili.com/313037750" class="link-btn secondary" target="_blank">📺 B站</a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="info-item">
-                <span class="icon">🎓</span>
-                <span class="label">学历：</span>
-                <span class="value">计算机科学 本科</span>
-            </div>
-            
-            <div class="info-item">
-                <span class="icon">🛠️</span>
-                <span class="label">技能：</span>
-                <span class="value">HTML, CSS, JavaScript, React, Vue</span>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>📅 最后更新：2026年4月</p>
+
         </div>
     </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p> 秒杀圈非官方网站 | 仅供展示 | <a href="https://github.com/WoZhiZhan/msq" target="_blank">GitHub</a></p>
+    </div>
+
 </body>
 </html>
